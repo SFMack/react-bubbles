@@ -1,5 +1,8 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
+
+import {PrivateRoute} from './PrivateRoute/PrivateRoute.js';
+import BubblePage from './components/BubblePage.js'
 
 import Login from "./components/Login";
 import "./styles.scss";
@@ -8,11 +11,14 @@ function App() {
   return (
     <Router>
       <div className="App">
+        <ul>
+          <li><Link to='/'>Home</Link></li>
+          <li><Link to='/bubblePage'>Bubbles</Link></li>
+        </ul>
+
+        
         <Route exact path="/" component={Login} />
-        {/* 
-          Build a PrivateRoute component that will 
-          display BubblePage when you're authenticated 
-        */}
+        <PrivateRoute path="/bubblePage" component={BubblePage} />
       </div>
     </Router>
   );
